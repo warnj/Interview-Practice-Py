@@ -101,6 +101,38 @@ class ArrayPractice:
             a = -1
         return int(x*10**(1+a)+y)
 
+    # https://leetcode.com/problems/longest-common-prefix
+    # worst case n^2 time, can do better with sorting (compare most dissimilar strings 1st and last ones)
+    def longestCommonPrefix(self, strs: List[str]) -> str:
+        result = ''
+        while True:
+            if len(result) == len(strs[0]):
+                return result
+            else:
+                char = strs[0][len(result)]
+                for i in range(1, len(strs)):
+                    s = strs[i]
+                    if len(result) == len(s):
+                        return result
+                    elif char != s[len(result)]:
+                        return result
+                result += char
+
+    # there is a better way than this brute force solution, consider sorting or building a trie with first list and comparing to 2nd list
+    def longestCommonPrefixTwoLists(self, strs1, strs2):
+        result = -sys.maxsize
+        for s1 in strs1:
+            for s2 in strs2:
+                result = max(result, self.__getCommonPrefix(s1, s2))
+        return result
+    def __getCommonPrefix(self, s1, s2):
+        l = 0
+        for i in range(min(len(s1), len(s2))):
+            if s1[i] != s2[i]:
+                return l
+            l += 1
+        return l
+
 
 def main() -> None:
     a = ArrayPractice()

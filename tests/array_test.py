@@ -20,9 +20,15 @@ class ArrayTesting(unittest.TestCase):
         self.assertTrue(self.a.swapOnceIncr([17, 18, 91, 20]))
 
     def testConcatSum(self):
-        self.assertEquals(198, self.a.concatSum([1, 2, 3]))
-        self.assertEquals(1344, self.a.concatSum([10, 2]))
+        self.assertEqual(198, self.a.concatSum([1, 2, 3]))
+        self.assertEqual(1344, self.a.concatSum([10, 2]))
 
+    def testLongestCommonPrefix(self):
+        self.assertEqual('fl', self.a.longestCommonPrefix(["flower", "flow", "flight"]))
+
+    def testLongestCommonPrefixTwoLists(self):
+        self.assertEqual(3, self.a.longestCommonPrefixTwoLists(["flower", "flow", "finger"],['advice', 'tweet', 'finance']))
+        self.assertEqual(2, self.a.longestCommonPrefixTwoLists(["flower", "flow", "finger"],['advice', 'tweet', 'flip']))
 
 if __name__ == '__main__':
     unittest.main()
